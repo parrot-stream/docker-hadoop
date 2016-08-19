@@ -1,0 +1,20 @@
+<configuration>
+
+    <property>
+        <name>dfs.replication</name>
+        <value>1</value>
+    </property>
+    <property>
+  	<name>dfs.namenode.name.dir</name>
+	<value>file:///hdfs/dfs/name</value>
+    </property>
+    <property>
+        <name>dfs.namenode.data.dir</name> 
+        <value>file:///hdfs/dfs/data</value>
+    </property>
+    <property>
+        <name>dfs.namenode.checkpoint.dir</name>
+        <value>file:///hdfs/dfs/namesecondary</value>
+    </property>
+
+</configuration>

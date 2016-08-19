@@ -1,0 +1,41 @@
+version: "2"
+
+services:
+
+    zookeeper:
+        container_name: zookeeper
+        image: confluent/zookeeper
+        ports:
+            - "2181:2181"
+        network_mode: bridge
+        restart: "no"
+    
+    hadoop:
+        container_name: hadoop
+        build:
+            context: .
+            dockerfile: Dockerfile.proxy
+        image: mcapitanio/hadoop:latest
+        links:
+            - zookeeper
+        network_mode: bridge
+        volumes:
+            - conf:/opt/hadoop/etc/hadoop
+            - logs:/opt/hadoop/logs
+            - hdfs:/hdfs
+        ports:
+            - "50070:50070"
+            - "8042:804"
+            - "8088:8088"
+            - "8188:8188"
+            - "19888:19888"
+        restart: "no"
+
+volumes:
+    conf:
+    hdfs:
+    logs:
+
+networks:
+    default:
+        driver: bridge
