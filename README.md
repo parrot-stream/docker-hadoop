@@ -29,7 +29,7 @@ Run with Docker Compose:
 
 Once started you'll be able to read the list of all the Hadoop Web GUIs urls, for example (the ip is non static!):
 
-| **Hadoop Web Interface**  |**URL**                             |
+| **Hadoop Web GUIs**       |**URL**                             |
 |:--------------------------|:-----------------------------------|
 | *Namenode*                | http://172.17.0.3:50070            |
 | *YARN Node Manager*       | http://172.17.0.3:8042             |
