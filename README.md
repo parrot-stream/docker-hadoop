@@ -6,7 +6,7 @@ ___
 
 This image runs the official [*Apache Hadoop*](http://hadoop.apache.org/) in a **pseudo distributed** mode on a Centos Linux distribution.
 
-The *latest* tag of this image is build with the [last stable](http://hadoop.apache.org/releases.html) release of Apache Hadoop on Centos 7.
+The *latest* tag of this image is build with the [latest stable](http://hadoop.apache.org/releases.html) release of Apache Hadoop on Centos 7.
 
 You can pull it with:
 
