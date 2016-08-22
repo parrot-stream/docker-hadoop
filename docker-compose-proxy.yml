@@ -20,9 +20,9 @@ services:
             - zookeeper
         network_mode: bridge
         volumes:
-            - conf:/opt/hadoop/etc/hadoop
-            - logs:/opt/hadoop/logs
-            - hdfs:/hdfs
+            - hadoop_conf:/opt/hadoop/etc/hadoop
+            - hadoop_logs:/opt/hadoop/logs
+            - hadoop_hdfs:/hdfs
         ports:
             - "50070:50070"
             - "8042:804"
@@ -32,9 +32,9 @@ services:
         restart: "no"
 
 volumes:
-    conf:
-    hdfs:
-    logs:
+    hadoop_conf:
+    hadoop_hdfs:
+    hadoop_logs:
 
 networks:
     default:

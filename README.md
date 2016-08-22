@@ -4,7 +4,7 @@ ___
 ### Description
 ___
 
-This image runs the official [*Apache Hadoop*](http://hadoop.apache.org/) in a **pseudo distributed** mode on a Centos Linux distribution.
+This image runs the official [*Apache Hadoop*](http://hadoop.apache.org/) in a **pseudo-distributed** mode on a Centos Linux distribution.
 
 The *latest* tag of this image is build with the [latest stable](http://hadoop.apache.org/releases.html) release of Apache Hadoop on Centos 7.
 
@@ -25,7 +25,9 @@ For example, if you want Apache Hadoop release 2.6.4 you can pull the image with
 
 Run with Docker Compose:
 
-    docker-compose run hadoop
+    docker-compose -p docker up
+
+Setting the project name to *docker* with the **-p** option is useful to share the named data volumes created with with the containers created with other docker-compose.yml configurations (for example the one of the [HBase Docker image]((https://hub.docker.com/r/mcapitanio/hbase/))).
 
 Once started you'll be able to read the list of all the Hadoop Web GUIs urls, for example (the ip is non static!):
 
