@@ -4,11 +4,6 @@ MAINTAINER Matteo Capitanio <matteo.capitanio@gmail.com>
 
 USER root
 
-# Enable proxy settings in the container, assuming that the Host is a Linux VirtualBox
-# with cntlm running on port 3128 on the default ip 10.0.2.2 (you have to change if different)
-#ENV http_proxy http://10.0.2.2:3128
-#ENV https_proxy http://10.0.2.2:3128
-
 ENV HADOOP_VER 2.7.2
 ENV HADOOP_HOME /opt/hadoop
 ENV HADOOP_PREFIX $HADOOP_HOME
