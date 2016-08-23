@@ -4,7 +4,7 @@ MAINTAINER Matteo Capitanio <matteo.capitanio@gmail.com>
 
 USER root
 
-ENV HADOOP_VER 2.7.2
+ENV HADOOP_VER 2.6.4
 ENV HADOOP_HOME /opt/hadoop
 ENV HADOOP_PREFIX $HADOOP_HOME
 ENV HADOOP_COMMON_HOME $HADOOP_HOME
@@ -29,8 +29,8 @@ RUN tar -xvf hadoop-$HADOOP_VER.tar.gz -C ..; \
 COPY ./hadoop/ ../hadoop/
 RUN chmod +x $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
-RUN mkdir -p /hdfs; \
-    hdfs namenode -format
+RUN rm -rf /hdfs; mkdir -p /hdfs
+RUN hdfs namenode -format
 
 RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key; \
     ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key; \
