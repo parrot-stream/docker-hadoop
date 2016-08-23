@@ -25,8 +25,8 @@ WORKDIR /opt/docker
 # Apache Hadoop
 RUN wget http://mirror.nohup.it/apache/hadoop/common/hadoop-$HADOOP_VER/hadoop-$HADOOP_VER.tar.gz
 RUN tar -xvf hadoop-$HADOOP_VER.tar.gz -C ..; \
-    mv ../hadoop-$HADOOP_VER ../hadoop
-COPY ./hadoop/ ../hadoop/
+    mv ../hadoop-$HADOOP_VER $HADOOP_HOME
+COPY ./hadoop/ $HADOOP_HOME/
 RUN chmod +x $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
 RUN mkdir -p /hdfs; \

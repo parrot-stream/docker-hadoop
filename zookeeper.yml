@@ -1,0 +1,14 @@
+version: "2"
+
+services:
+
+    zookeeper:
+        image: confluent/zookeeper
+        ports:
+            - "2181:2181"
+        networks:
+            - hadoop
+
+networks:
+    hadoop:
+        driver: bridge

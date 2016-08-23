@@ -3,12 +3,10 @@ version: "2"
 services:
 
     zookeeper:
-        image: confluent/zookeeper
-        ports:
-            - "2181:2181"
-        networks:
-            - hadoop
-    
+        extends:
+            file:   zookeeper.yml
+            service: zookeeper
+
     hadoop:
         build:
             context: .
@@ -33,6 +31,8 @@ volumes:
     hadoop_conf:
     hadoop_hdfs:
     hadoop_logs:
+
+
 
 networks:
     hadoop:
