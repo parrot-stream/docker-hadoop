@@ -57,4 +57,5 @@ VOLUME ["/hdfs", "/opt/hadoop/logs", "/opt/hadoop/etc/hadoop"]
 COPY ./etc /etc
 COPY ./supervisord-bootstrap.sh $HADOOP_HOME/bin
 
+
 ENTRYPOINT ["supervisord", "-c", "/etc/supervisord.conf", "-n"]
