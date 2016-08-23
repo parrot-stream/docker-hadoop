@@ -6,7 +6,8 @@ services:
         image: confluent/zookeeper
         ports:
             - "2181:2181"
-        network_mode: bridge
+        networks:
+            - hadoop
         restart: "no"
     
     hadoop:
@@ -16,7 +17,8 @@ services:
         image: mcapitanio/hadoop:latest
         links:
             - zookeeper
-        network_mode: bridge
+        networks:
+            - hadoop
         volumes:
             - hadoop_conf:/opt/hadoop/etc/hadoop
             - hadoop_logs:/opt/hadoop/logs
@@ -35,5 +37,5 @@ volumes:
     hadoop_logs:
 
 networks:
-    default:
+    hadoop:
         driver: bridge
