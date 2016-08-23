@@ -51,7 +51,6 @@ There are 3 named volumes defined:
 - **hadoop_logs** which points to HADOOP LOG_DIR
 - **hadoop_hdfs** which contains the HDFS files for the primary and secondary name nodes
 
-
 ### Available tags:
 
 - Apache Hadoop 2.7.2 (2.7.2, [latest](https://github.com/mcapitanio/docker-hadoop/blob/latest/Dockerfile))

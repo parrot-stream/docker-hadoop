@@ -8,7 +8,6 @@ services:
             - "2181:2181"
         networks:
             - hadoop
-        restart: "no"
     
     hadoop:
         build:
@@ -29,7 +28,6 @@ services:
             - "8088:8088"
             - "8188:8188"
             - "19888:19888"
-        restart: "no"
 
 volumes:
     hadoop_conf:
