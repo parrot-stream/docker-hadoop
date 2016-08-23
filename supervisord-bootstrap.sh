@@ -5,9 +5,7 @@ rm /tmp/*.pid 2> /dev/null
 supervisorctl start sshd
 supervisorctl start hdfs
 supervisorctl start resourcemanager
-sleep 5
 supervisorctl start nodemanager
-sleep 5
 supervisorctl start timelineserver
 supervisorctl start historyserver
 
@@ -19,8 +17,8 @@ echo -e ""
 echo -e "Hadoop - NameNode:			http://$ip:50070"
 echo -e "Hadoop - DataNode:			http://$ip:50075"
 echo -e "Hadoop - YARN Node Manager:		http://$ip:8042"
-echo -e "Hadoop - YARN Resource Manager:	\thttp://$ip:8088"
+echo -e "Hadoop - YARN Resource Manager:		http://$ip:8088"
 echo -e "Hadoop - YARN Application History:	http://$ip:8188"
-echo -e "Hadoop - MapReduce Job History:	\thttp://$ip:19888/jobhistory"
+echo -e "Hadoop - MapReduce Job History:		http://$ip:19888/jobhistory"
 echo -e "--------------------------------------------------------------------------------\n\n"
 

@@ -25,12 +25,12 @@ WORKDIR /opt/docker
 # Apache Hadoop
 RUN wget http://mirror.nohup.it/apache/hadoop/common/hadoop-$HADOOP_VER/hadoop-$HADOOP_VER.tar.gz
 RUN tar -xvf hadoop-$HADOOP_VER.tar.gz -C ..; \
-    mv ../hadoop-$HADOOP_VER ../hadoop
-COPY ./hadoop/ ../hadoop/
+    mv ../hadoop-$HADOOP_VER $HADOOP_HOME
+COPY ./hadoop/ $HADOOP_HOME/
 RUN chmod +x $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
-RUN rm -rf /hdfs; mkdir -p /hdfs
-RUN hdfs namenode -format
+RUN mkdir -p /hdfs; \
+    hdfs namenode -format
 
 RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key; \
     ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key; \
@@ -56,6 +56,5 @@ VOLUME ["/hdfs", "/opt/hadoop/logs", "/opt/hadoop/etc/hadoop"]
 
 COPY ./etc /etc
 COPY ./supervisord-bootstrap.sh $HADOOP_HOME/bin
-
 
 ENTRYPOINT ["supervisord", "-c", "/etc/supervisord.conf", "-n"]
