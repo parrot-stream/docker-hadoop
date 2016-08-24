@@ -53,5 +53,5 @@ There are 3 named volumes defined:
 
 ### Available tags:
 
-- Apache Hadoop 2.7.2 (2.7.2, [latest](https://github.com/mcapitanio/docker-hadoop/blob/latest/Dockerfile))
+- Apache Hadoop 2.7.2 ([2.7.2](https://github.com/mcapitanio/docker-hadoop/blob/2.7.2/Dockerfile), [latest](https://github.com/mcapitanio/docker-hadoop/blob/latest/Dockerfile))
 - Apache Hadoop 2.6.4 ([2.6.4](https://github.com/mcapitanio/docker-hadoop/blob/2.6.4/Dockerfile))
