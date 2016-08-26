@@ -33,7 +33,8 @@ Once started you'll be able to read the list of all the Hadoop Web GUIs urls, fo
 
 | **Hadoop Web GUIs**       |**URL**                             |
 |:--------------------------|:-----------------------------------|
-| *Namenode*                | http://172.17.0.3:50070            |
+| *Hadoop Name Node*        | http://172.17.0.3:50070            |
+| *Hadoop Data Node*        | http://172.17.0.3:50075            |
 | *YARN Node Manager*       | http://172.17.0.3:8042             |
 | *YARN Resource Manager*   | http://172.17.0.3:8088             |
 | *YARN Timeline History*   | http://172.17.0.3:8188             |
@@ -48,11 +49,10 @@ included in the GitHub source repository.
 There are 3 named volumes defined:
 
 - **hadoop_conf** wich points to HADOOP_CONF_DIR
-- **hadoop_logs** which points to HADOOP LOG_DIR
+- **hadoop_logs** which points to HADOOP_LOG_DIR
 - **hadoop_hdfs** which contains the HDFS files for the primary and secondary name nodes
-
 
 ### Available tags:
 
-- Apache Hadoop 2.7.2 (2.7.2, [latest](https://github.com/mcapitanio/docker-hadoop/blob/latest/Dockerfile))
+- Apache Hadoop 2.7.2 ([2.7.2](https://github.com/mcapitanio/docker-hadoop/blob/2.7.2/Dockerfile), [latest](https://github.com/mcapitanio/docker-hadoop/blob/latest/Dockerfile))
 - Apache Hadoop 2.6.4 ([2.6.4](https://github.com/mcapitanio/docker-hadoop/blob/2.6.4/Dockerfile))
