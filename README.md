@@ -33,7 +33,8 @@ Once started you'll be able to read the list of all the Hadoop Web GUIs urls, fo
 
 | **Hadoop Web GUIs**       |**URL**                             |
 |:--------------------------|:-----------------------------------|
-| *Namenode*                | http://172.17.0.3:50070            |
+| *Hadoop Name Node*        | http://172.17.0.3:50070            |
+| *Hadoop Data Node*        | http://172.17.0.3:50075            |
 | *YARN Node Manager*       | http://172.17.0.3:8042             |
 | *YARN Resource Manager*   | http://172.17.0.3:8088             |
 | *YARN Timeline History*   | http://172.17.0.3:8188             |
