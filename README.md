@@ -49,7 +49,7 @@ included in the GitHub source repository.
 There are 3 named volumes defined:
 
 - **hadoop_conf** wich points to HADOOP_CONF_DIR
-- **hadoop_logs** which points to HADOOP LOG_DIR
+- **hadoop_logs** which points to HADOOP_LOG_DIR
 - **hadoop_hdfs** which contains the HDFS files for the primary and secondary name nodes
 
 ### Available tags:
