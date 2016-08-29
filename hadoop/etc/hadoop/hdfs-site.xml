@@ -17,6 +17,14 @@
         <value>file:///hdfs/dfs/namesecondary</value>
     </property>
     <property>
+        <name>dfs.permissions.superusergroup</name>
+        <value>supergroup</value>
+    </property>
+    <property>
+        <name>dfs.permissions.enabled</name>
+        <value>false</value>
+    </property>
+    <property>
         <name>dfs.webhdfs.enabled</name>
         <value>true</value>
     </property>

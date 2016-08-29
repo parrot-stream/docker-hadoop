@@ -17,7 +17,7 @@ ENV PATH $HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
 # Install needed packages
 RUN yum clean all; yum update -y; yum clean all
 RUN yum install -y deltarpm
-RUN yum install -y which openssh-clients openssh-server python-setuptools
+RUN yum install -y which openssh-clients openssh-server openssl python-setuptools
 RUN easy_install supervisor
 
 WORKDIR /opt/docker
@@ -30,6 +30,12 @@ COPY hadoop/ $HADOOP_HOME/
 COPY ./etc /etc
 RUN chmod +x $HADOOP_HOME/etc/hadoop/*.sh
 RUN chmod +x $HADOOP_HOME/bin/*.sh
+
+RUN useradd -p $(echo "hdfs" | openssl passwd -1 -stdin) hdfs; \
+    groupadd supergroup; \
+    groupadd hdfs; \
+    usermod -a -G supergroup hdfs; \
+    usermod -a -G wheel hdfs
 
 RUN mkdir -p /hdfs; \
     hdfs namenode -format
