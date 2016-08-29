@@ -27,6 +27,8 @@ supervisorctl start nodemanager
 supervisorctl start timelineserver
 supervisorctl start historyserver
 
+hdfs dfs -chown hdfs:supergroup /
+
 ip=`awk 'END{print $1}' /etc/hosts`
 
 echo -e "\n\n--------------------------------------------------------------------------------"
