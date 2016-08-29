@@ -8,6 +8,9 @@ services:
             service: zookeeper
 
     hadoop:
+        build:
+            context: .
+            dockerfile: Dockerfile
         image: mcapitanio/hadoop:latest
         links:
             - zookeeper
