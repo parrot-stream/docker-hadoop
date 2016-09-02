@@ -1,33 +1,48 @@
 #!/bin/bash
 
-rm /etc/ssh/*key*
-rm /root/.ssh/id_rsa
-
-ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key; \
-ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key; \
-ssh-keygen -q -N "" -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key; \
-ssh-keygen -q -N "" -t ed25519 -f /etc/ssh/ssh_host_ed25519_key; \
-ssh-keygen -q -N "" -t rsa -f /root/.ssh/id_rsa; \
-cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
+/opt/hadoop/bin/create-ssh-keys.sh
 
 rm /tmp/*.pid 2> /dev/null
 
 wait-for-it.sh zookeeper:2181 -t 120
-
 rc=$?
 if [ $rc -ne 0 ]; then
-    echo "Zookeeper not ready! Exiting..."
-	exit $rc
+    echo -e "\n--------------------------------------------"
+    echo -e "      Zookeeper not ready! Exiting..."
+    echo -e "--------------------------------------------"
+    exit $rc
 fi
 
 supervisorctl start sshd
+
+wait-for-it.sh localhost:22 -t 60
+rc=$?
+if [ $rc -ne 0 ]; then
+    echo -e "\n--------------------------------------------"
+    echo -e "       SSH not ready! Exiting..."
+    echo -e "--------------------------------------------"
+    exit $rc
+fi
+
 supervisorctl start hdfs
 supervisorctl start resourcemanager
+
+wait-for-it.sh localhost:8088 -t 60
+rc=$?
+if [ $rc -ne 0 ]; then
+    echo -e "\n--------------------------------------------"
+    echo -e "YARN Resource Manager not ready! Exiting..."
+    echo -e "--------------------------------------------"
+    exit $rc
+fi
+
 supervisorctl start nodemanager
 supervisorctl start timelineserver
 supervisorctl start historyserver
 
 hdfs dfs -chown hdfs:supergroup /
+hdfs dfs -chmod 777 /
+hdfs dfs -chmod 777 /tmp
 
 ip=`awk 'END{print $1}' /etc/hosts`
 

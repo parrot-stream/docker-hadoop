@@ -32,17 +32,23 @@ RUN chmod +x $HADOOP_HOME/etc/hadoop/*.sh
 RUN chmod +x $HADOOP_HOME/bin/*.sh
 
 RUN useradd -p $(echo "hdfs" | openssl passwd -1 -stdin) hdfs; \
+    useradd -p $(echo "hue" | openssl passwd -1 -stdin) hue; \
     groupadd supergroup; \
-    groupadd hdfs; \
     usermod -a -G supergroup hdfs; \
-    usermod -a -G wheel hdfs
-
-RUN mkdir -p /hdfs; \
-    hdfs namenode -format
+    usermod -a -G supergroup hue
 
 ADD ssh_config /root/.ssh/config
-RUN chmod 600 /root/.ssh/config
-RUN chown root:root /root/.ssh/config
+RUN chmod 600 /root/.ssh/config; \
+    chown root:root /root/.ssh/config
+
+RUN mkdir -p /hdfs; \
+    chown -R hdfs:hdfs /hdfs; \
+    chown -R hdfs:hdfs $HADOOP_HOME
+
+USER hdfs
+RUN mkdir -p $HADOOP_HOME/logs; \
+    hdfs namenode -format
+USER root
 
 # hdfs-default.xml ports
 EXPOSE 50010 50020 50070 50075 50090 50091 50100 50105 50475 50470 8020 8485 8480 8481
