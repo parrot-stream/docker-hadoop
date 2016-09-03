@@ -1,5 +1,7 @@
 FROM mcapitanio/centos-java:7-7u80
 
+ENV HADOOP_VER 2.7.2
+
 MAINTAINER Matteo Capitanio <matteo.capitanio@gmail.com>
 
 USER root
@@ -8,7 +10,6 @@ ENV http_proxy ${http_proxy}
 ENV https_proxy ${https_proxy}
 ENV no_proxy ${no_proxy}
 
-ENV HADOOP_VER 2.7.2
 ENV HADOOP_HOME /opt/hadoop
 ENV HADOOP_PREFIX $HADOOP_HOME
 ENV HADOOP_COMMON_HOME $HADOOP_HOME

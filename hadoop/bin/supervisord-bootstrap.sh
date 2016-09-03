@@ -50,10 +50,6 @@ hdfs dfs -chown hdfs:supergroup /
 hdfs dfs -chmod 777 /
 hdfs dfs -chmod 777 /tmp
 
-hdfs dfsadmin -safemode leave
-hdfs fsck / -delete
-hdfs dfsadmin -safemode leave
-
 ip=`awk 'END{print $1}' /etc/hosts`
 
 echo -e "\n\n--------------------------------------------------------------------------------"
