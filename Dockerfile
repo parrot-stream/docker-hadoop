@@ -4,6 +4,10 @@ MAINTAINER Matteo Capitanio <matteo.capitanio@gmail.com>
 
 USER root
 
+ENV http_proxy ${http_proxy}
+ENV https_proxy ${https_proxy}
+ENV no_proxy ${no_proxy}
+
 ENV HADOOP_VER 2.6.4
 ENV HADOOP_HOME /opt/hadoop
 ENV HADOOP_PREFIX $HADOOP_HOME
@@ -15,34 +19,41 @@ ENV YARN_CONF_DIR $HADOOP_CONF_DIR
 ENV PATH $HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
 
 # Install needed packages
-RUN yum clean all; yum update -y; yum clean all
-RUN yum install -y deltarpm
-RUN yum install -y which openssh-clients openssh-server openssl python-setuptools
-RUN easy_install supervisor
+RUN yum clean all; \
+    yum update -y; \
+    yum install -y deltarpm; \
+    yum install -y which openssh-clients openssh-server openssl python-setuptools; \
+    easy_install supervisor
 
 WORKDIR /opt/docker
+
+RUN useradd -p $(echo "hdfs" | openssl passwd -1 -stdin) hdfs; \
+    groupadd supergroup; \
+    usermod -a -G supergroup hdfs;
 
 # Apache Hadoop
 RUN wget http://mirror.nohup.it/apache/hadoop/common/hadoop-$HADOOP_VER/hadoop-$HADOOP_VER.tar.gz
 RUN tar -xvf hadoop-$HADOOP_VER.tar.gz -C ..; \
     mv ../hadoop-$HADOOP_VER $HADOOP_HOME
+
+ADD ssh_config /root/.ssh/config
+RUN chmod 600 /root/.ssh/config; \
+    chown root:root /root/.ssh/config
+
 COPY hadoop/ $HADOOP_HOME/
 COPY ./etc /etc
 RUN chmod +x $HADOOP_HOME/etc/hadoop/*.sh
 RUN chmod +x $HADOOP_HOME/bin/*.sh
 
-RUN useradd -p $(echo "hdfs" | openssl passwd -1 -stdin) hdfs; \
-    groupadd supergroup; \
-    groupadd hdfs; \
-    usermod -a -G supergroup hdfs; \
-    usermod -a -G wheel hdfs
+RUN rm -rf /hdfs; \
+    mkdir -p /hdfs; \
+    chown -R hdfs:hdfs /hdfs; \
+    chown -R hdfs:hdfs $HADOOP_HOME
 
-RUN mkdir -p /hdfs; \
+USER hdfs
+RUN mkdir -p $HADOOP_HOME/logs; \
     hdfs namenode -format
-
-ADD ssh_config /root/.ssh/config
-RUN chmod 600 /root/.ssh/config
-RUN chown root:root /root/.ssh/config
+USER root
 
 # hdfs-default.xml ports
 EXPOSE 50010 50020 50070 50075 50090 50091 50100 50105 50475 50470 8020 8485 8480 8481
