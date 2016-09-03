@@ -42,13 +42,17 @@ if [ $rc -ne 0 ]; then
     exit $rc
 fi
 
-#supervisorctl start nodemanager
-#supervisorctl start timelineserver
-#supervisorctl start historyserver
+supervisorctl start nodemanager
+supervisorctl start timelineserver
+supervisorctl start historyserver
 
 hdfs dfs -chown hdfs:supergroup /
 hdfs dfs -chmod 777 /
 hdfs dfs -chmod 777 /tmp
+
+hdfs dfsadmin -safemode leave
+hdfs fsck / -delete
+hdfs dfsadmin -safemode leave
 
 ip=`awk 'END{print $1}' /etc/hosts`
 

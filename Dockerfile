@@ -28,12 +28,8 @@ RUN yum clean all; \
 WORKDIR /opt/docker
 
 RUN useradd -p $(echo "hdfs" | openssl passwd -1 -stdin) hdfs; \
-    useradd -p $(echo "hue" | openssl passwd -1 -stdin) hue; \
-    useradd -p $(echo "hive" | openssl passwd -1 -stdin) hive; \
     groupadd supergroup; \
-    usermod -a -G supergroup hdfs; \
-    usermod -a -G supergroup hue; \
-    usermod -a -G supergroup hive
+    usermod -a -G supergroup hdfs;
 
 # Apache Hadoop
 RUN wget http://mirror.nohup.it/apache/hadoop/common/hadoop-$HADOOP_VER/hadoop-$HADOOP_VER.tar.gz
