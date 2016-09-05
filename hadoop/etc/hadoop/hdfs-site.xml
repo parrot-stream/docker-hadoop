@@ -28,4 +28,8 @@
         <name>dfs.webhdfs.enabled</name>
         <value>true</value>
     </property>
+    <property>
+        <name>dfs.namenode.safemode.threshold-pct</name>
+        <value>0.5</value>
+    </property>
 </configuration>
