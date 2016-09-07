@@ -20,10 +20,15 @@ ENV PATH $HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
 
 # Install needed packages
 RUN yum clean all; \
-    yum update -y; \
-    yum install -y deltarpm; \
-    yum install -y which openssh-clients openssh-server openssl python-setuptools; \
-    easy_install supervisor
+    yum update -y
+RUN yum install -y deltarpm \
+    which \
+    openssh-clients \
+    openssh-server \
+    openssl \
+    python-setuptools
+RUN yum clean all
+RUN easy_install supervisor
 
 WORKDIR /opt/docker
 
