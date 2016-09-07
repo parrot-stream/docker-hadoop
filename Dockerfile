@@ -24,7 +24,9 @@ RUN yum clean all; \
     yum update -y; \
     yum install -y deltarpm; \
     yum install -y which openssh-clients openssh-server openssl python-setuptools; \
+    yum clean all; 
     easy_install supervisor
+    
 
 WORKDIR /opt/docker
 
