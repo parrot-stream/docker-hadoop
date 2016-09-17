@@ -28,16 +28,16 @@ Run with Docker Compose:
 
 Setting the project name to *docker* with the **-p** option is useful to share the named data volumes created with the containers coming from other docker-compose.yml configurations of mine.
 
-Once started you'll be able to read the list of all the Hadoop Web GUIs urls, for example (the ip is non static!):
+Once started you'll be able to read the list of all the Hadoop Web GUIs urls:
 
-| **Hadoop Web UIs**        |**URL**                             |
-|:--------------------------|:-----------------------------------|
-| *Hadoop Name Node*        | http://172.17.0.3:50070            |
-| *Hadoop Data Node*        | http://172.17.0.3:50075            |
-| *YARN Node Manager*       | http://172.17.0.3:8042             |
-| *YARN Resource Manager*   | http://172.17.0.3:8088             |
-| *YARN Timeline History*   | http://172.17.0.3:8188             |
-| *MapReduce Job History*   | http://172.17.0.3:19888/jobhistory |
+| **Hadoop Web UIs**        |**URL**                            |
+|:--------------------------|:----------------------------------|
+| *Hadoop Name Node*        | http://localhost:50070            |
+| *Hadoop Data Node*        | http://localhost:50075            |
+| *YARN Node Manager*       | http://localhost:8042             |
+| *YARN Resource Manager*   | http://localhost:8088             |
+| *YARN Timeline History*   | http://localhost:8188             |
+| *MapReduce Job History*   | http://localhost:19888/jobhistory |
 
 While the Hadoop Docker container is running, you can always get the urls' list with the script:
 
