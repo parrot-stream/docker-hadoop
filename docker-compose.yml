@@ -11,7 +11,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-        image: mcapitanio/hadoop:latest
+        image: mcapitanio/hadoop:2.7.3
         links:
             - zookeeper
         networks:
