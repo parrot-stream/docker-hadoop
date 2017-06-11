@@ -32,4 +32,12 @@
         <name>dfs.namenode.safemode.threshold-pct</name>
         <value>0.5</value>
     </property>
+    <property>
+	<name>dfs.datanode.hdfs-blocks-metadata.enabled</name>
+	<value>true</value>
+    </property>
+    <property>
+        <name>dfs.client.file-block-storage-locations.timeout.millis</name>
+        <value>30000</value>
+    </property>
 </configuration>
