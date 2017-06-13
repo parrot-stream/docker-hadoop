@@ -5,6 +5,10 @@
         <value>hdfs://hadoop:8020</value>
     </property>
     <property>
+        <name>dfs.client.read.shortcircuit</name>
+        <value>true</value>
+    </property>  
+    <property>
 	<name>hadoop.registry.zk.quorum</name>
 	<value>zookeeper:2181</value>
     </property>
