@@ -11,6 +11,7 @@ ENV HADOOP_PREFIX $HADOOP_HOME
 ENV HADOOP_COMMON_HOME $HADOOP_HOME
 ENV HADOOP_COMMON_LIB_NATIVE $HADOOP_PREFIX/lib/native
 ENV HADOOP_CONF_DIR $HADOOP_PREFIX/etc/hadoop
+ENV HADOOP_LOG_DIR=$HADOOP_HOME/logs
 ENV YARN_CONF_DIR $HADOOP_CONF_DIR
 
 ENV PATH $HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
@@ -47,7 +48,7 @@ COPY hadoop/ $HADOOP_HOME/
 COPY ./etc /etc
 RUN chmod +x $HADOOP_HOME/etc/hadoop/*.sh
 RUN chmod +x $HADOOP_HOME/bin/*.sh
-
+RUN ls -latr /var/run/sshd
 RUN rm -rf /hdfs; \
     mkdir -p /hdfs; \
     chown -R hdfs:hdfs /hdfs; \
