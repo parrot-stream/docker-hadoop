@@ -48,7 +48,7 @@ COPY hadoop/ $HADOOP_HOME/
 COPY ./etc /etc
 RUN chmod +x $HADOOP_HOME/etc/hadoop/*.sh
 RUN chmod +x $HADOOP_HOME/bin/*.sh
-RUN ls -latr /var/run/sshd
+
 RUN rm -rf /hdfs; \
     mkdir -p /hdfs; \
     chown -R hdfs:hdfs /hdfs; \
