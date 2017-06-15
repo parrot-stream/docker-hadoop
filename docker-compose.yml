@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: mcapitanio/hadoop:latest
+    image: mcapitanio/hadoop:2.6.0-cdh5.11.1
     networks:
     - hadoop
     external_links:

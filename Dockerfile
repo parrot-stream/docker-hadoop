@@ -3,6 +3,7 @@ FROM ubuntu:16.04
 MAINTAINER Matteo Capitanio <matteo.capitanio@gmail.com>
 
 ENV HADOOP_VER 2.6.0+cdh5.11.1
+
 ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-amd64/
 
 USER root
@@ -39,7 +40,5 @@ RUN chown mapred:mapred /var/log/hadoop-mapreduce
 EXPOSE 50010 50020 50070 50075 50090 50091 50100 50105 50475 50470 8020 8485 8480 8481
 EXPOSE 50030 50060 13562 10020 19888
 EXPOSE 8030 8031 8032 8040 8042 8046 8047 8088 8090 8188 8190 8788 10200
-
-VOLUME ["/var/log"]
 
 ENTRYPOINT ["supervisord", "-c", "/etc/supervisord.conf", "-n"]
