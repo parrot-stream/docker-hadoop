@@ -15,17 +15,8 @@ if [ $rc -ne 0 ]; then
     exit $rc
 fi
 
-sudo -u hdfs hdfs dfs -chmod -R 777 /user
-
-#sudo -u hdfs hdfs dfs -mkdir -p /user/hive/warehouse
-#sudo -u hdfs hdfs dfs -chmod -R 777 /user/hive
-#sudo -u hdfs hdfs dfs -chown hdfs:supergroup /
-#sudo -u hdfs hdfs dfs -mkdir -p /tmp/hive/hive
-
-
-#sudo -u hdfs hdfs dfs -chmod -R 777 /tmp
-#sudo -u hdfs hdfs dfs -chown -R hdfs:supergroup /tmp
-
-#sudo -u hdfs hdfs dfs -chmod -R 777 /user
-#sudo -u hdfs hdfs dfs -chown -R hdfs:supergroup /user
-#sudo -u hdfs hdfs dfs -chown -R hive:hive /user/hive
+sudo -u hdfs hdfs dfs -mkdir -p /user/hive/warehouse
+sudo -u hdfs hdfs dfs -mkdir -p /user/hue
+sudo -u hdfs hdfs dfs -mkdir -p /user/impala
+sudo -u hdfs hdfs dfs -mkdir -p /tmp
+sudo -u hdfs hdfs dfs -chmod -R 777 /
