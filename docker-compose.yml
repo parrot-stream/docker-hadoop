@@ -1,21 +1,25 @@
-version: "2"
+version: "3"
 
 services:
 
     zookeeper:
-        extends:
-            file:   zookeeper.yml
-            service: zookeeper
+        image: parrotstream/zookeeper
+        ports:
+            - "2181:2181"
+            - "2888:2888"
+            - "3888:3888"
+        networks:
+            - parrot
 
     hadoop:
         build:
             context: .
             dockerfile: Dockerfile
-        image: mcapitanio/hadoop:2.7.3
+        image: parrotstream/hadoop:2.7.3
         links:
             - zookeeper
         networks:
-            - hadoop
+            - parrot
         volumes:
             - hadoop_conf:/opt/hadoop/etc/hadoop
             - hadoop_logs:/opt/hadoop/logs
@@ -33,10 +37,7 @@ volumes:
     hadoop_conf:
     hadoop_hdfs:
     hadoop_logs:
-    zookeeper_data:
-    zookeeper_logs:
-    zookeeper_conf:
 
 networks:
-    hadoop:
+    parrot:
         driver: bridge

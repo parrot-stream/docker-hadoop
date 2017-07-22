@@ -1,4 +1,4 @@
-FROM mcapitanio/centos-java:7-7u80
+FROM parrotstream/centos-openjdk
 
 ENV HADOOP_VER 2.7.2
 
