@@ -2,22 +2,16 @@ FROM ubuntu:16.04
 
 MAINTAINER Matteo Capitanio <matteo.capitanio@gmail.com>
 
-ENV HADOOP_VER 2.6.0+cdh5.11.1
-
-ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-amd64/
-
 USER root
 
-WORKDIR /opt/docker
-
 RUN apt-get update -y
-RUN apt-get upgrade -y
-RUN apt-get install -y wget apt-transport-https python-setuptools openjdk-8-jdk apt-utils sudo
+#RUN apt-get upgrade -y
+RUN apt-get install -y wget apt-transport-https python-setuptools openjdk-8-jdk apt-utils sudo curl
 RUN easy_install supervisor
-RUN wget http://archive.cloudera.com/cdh5/one-click-install/trusty/amd64/cdh5-repository_1.0_all.deb
-RUN dpkg -i cdh5-repository_1.0_all.deb
+ADD cloudera.list /etc/apt/sources.list.d/
 RUN apt-get update -y
-RUN apt-get install -y --allow-unauthenticated hadoop-hdfs-namenode=$HADOOP_VER* hadoop-hdfs-datanode=$HADOOP_VER* hadoop-yarn-resourcemanager=$HADOOP_VER* hadoop-yarn-nodemanager=$HADOOP_VER* hadoop-mapreduce-historyserver=$HADOOP_VER*
+RUN curl -s https://archive.cloudera.com/cdh5/ubuntu/trusty/amd64/cdh/archive.key | apt-key add -
+RUN apt-get install -y --allow-unauthenticated hadoop-hdfs-namenode hadoop-hdfs-datanode hadoop-yarn-resourcemanager hadoop-yarn-nodemanager hadoop-mapreduce-historyserver
 
 RUN mkdir -p /var/run/hdfs-sockets; \
     chown hdfs.hadoop /var/run/hdfs-sockets
@@ -28,6 +22,8 @@ ADD etc/supervisord.conf /etc/
 ADD etc/hadoop/conf/core-site.xml /etc/hadoop/conf/
 ADD etc/hadoop/conf/hdfs-site.xml /etc/hadoop/conf/
 ADD etc/hadoop/conf/mapred-site.xml /etc/hadoop/conf/
+
+WORKDIR /
 
 # Various helper scripts
 ADD bin/start-hdfs.sh ./
