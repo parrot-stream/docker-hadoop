@@ -1,2 +1,0 @@
-deb [arch=amd64] https://archive.cloudera.com/cdh5/ubuntu/trusty/amd64/cdh trusty-cdh5.11 contrib
-deb-src https://archive.cloudera.com/cdh5/ubuntu/trusty/amd64/cdh trusty-cdh5.11 contrib

@@ -1,17 +1,15 @@
-FROM ubuntu:16.04
+FROM centos
 
 MAINTAINER Matteo Capitanio <matteo.capitanio@gmail.com>
 
 USER root
 
-RUN apt-get update -y
-#RUN apt-get upgrade -y
-RUN apt-get install -y wget apt-transport-https python-setuptools openjdk-8-jdk apt-utils sudo curl
+RUN yum update -y
+RUN yum install -y wget python-setuptools java-1.8.0-openjdk-devel sudo curl vim
 RUN easy_install supervisor
-ADD cloudera.list /etc/apt/sources.list.d/
-RUN apt-get update -y
-RUN curl -s https://archive.cloudera.com/cdh5/ubuntu/trusty/amd64/cdh/archive.key | apt-key add -
-RUN apt-get install -y --allow-unauthenticated hadoop-hdfs-namenode hadoop-hdfs-datanode hadoop-yarn-resourcemanager hadoop-yarn-nodemanager hadoop-mapreduce-historyserver
+ADD cloudera-cdh5.repo /etc/yum.repos.d/
+RUN rpm --import https://archive.cloudera.com/cdh5/redhat/5/x86_64/cdh/RPM-GPG-KEY-cloudera
+RUN yum install -y hadoop-hdfs-namenode hadoop-hdfs-datanode hadoop-yarn-resourcemanager hadoop-yarn-nodemanager hadoop-mapreduce-historyserver
 
 RUN mkdir -p /var/run/hdfs-sockets; \
     chown hdfs.hadoop /var/run/hdfs-sockets

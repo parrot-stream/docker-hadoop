@@ -3,9 +3,9 @@ ___
 
 ### Description
 
-This image runs the official [*Apache Hadoop*](http://hadoop.apache.org/) in a **pseudo-distributed** mode on a Centos Linux distribution.
+This image runs the [*Cloudera CDH Hadoop*](https://www.cloudera.com/products/open-source/apache-hadoop/key-cdh-components.html) in a **pseudo-distributed** mode on a Centos 7 Linux distribution.
 
-The *latest* tag of this image is build with the [latest stable](http://hadoop.apache.org/releases.html) release of Apache Hadoop on Centos 7.
+The *latest* tag of this image is build with the latest available release of CDH on Centos 7.
 
 You can pull it with:
 
@@ -14,13 +14,12 @@ You can pull it with:
 
 You can also find other images based on different Apache Hadoop releases, using a different tag in the following form:
 
-    docker pull parrotstream/hadoop:[hadoop-release]
+    docker pull parrotstream/hadoop:[hadoop-release]-[cdh-release]
 
 
-For example, if you want Apache Hadoop release 2.6.4 you can pull the image with:
+For example, if you want Apache Hadoop release 2.6.0 on CDH 5.11.1 you can pull the image with:
 
-    docker pull parrotstream/hadoop:2.6.4
-
+    docker pull parrotstream/hadoop:2.6.0-cdh5.11.1
 
 Run with Docker Compose:
 
