@@ -4,9 +4,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: mcapitanio/hadoop:2.6.0-cdh5.11.1
+    image: parrotstream/hadoop:2.6.0-cdh5.11.1
     networks:
-    - hadoop
+    - parrot
     external_links:
     - zookeeper
     ports:
@@ -20,6 +20,6 @@ services:
 networks:
   default:
     external:
-      name: hadoop
-  hadoop:
+      name: parrot
+  parrot:
     driver: bridge
