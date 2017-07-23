@@ -53,6 +53,8 @@ There are 3 named volumes defined:
 
 ### Available tags:
 
-- Apache Hadoop 2.8.0 ([2.8.0](https://github.com/parrot-stream/docker-hadoop/blob/2.8.0/Dockerfile), [latest](https://github.com/parrot-stream/docker-hadoop/blob/latest/Dockerfile))
+- Apache Hadoop 2.8.1 ([2.8.1](https://github.com/parrot-stream/docker-hadoop/blob/2.8.1/Dockerfile), [latest](https://github.com/parrot-stream/docker-hadoop/blob/latest/Dockerfile))
+- Apache Hadoop 2.8.0 ([2.8.0](https://github.com/parrot-stream/docker-hadoop/blob/2.8.0/Dockerfile))
 - Apache Hadoop 2.7.3 ([2.7.3](https://github.com/parrot-stream/docker-hadoop/blob/2.7.3/Dockerfile))
 - Apache Hadoop 2.6.4 ([2.6.4](https://github.com/parrot-stream/docker-hadoop/blob/2.6.4/Dockerfile))
+- Apache Hadoop 2.6.0-cdh5.11.1 ([2.6.0-cdh5.11.1](https://github.com/parrot-stream/docker-hadoop/blob/2.6.0-cdh5.11.1/Dockerfile))
