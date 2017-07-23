@@ -1,21 +1,16 @@
-version: "2"
+version: "3"
 
 services:
-
-    zookeeper:
-        extends:
-            file:   zookeeper.yml
-            service: zookeeper
 
     hadoop:
         build:
             context: .
             dockerfile: Dockerfile
-        image: mcapitanio/hadoop:latest
-        links:
+        image: parrotstream/hadoop:latest
+        external_links:
             - zookeeper
         networks:
-            - hadoop
+            - parrot
         volumes:
             - hadoop_conf:/opt/hadoop/etc/hadoop
             - hadoop_logs:/opt/hadoop/logs
@@ -33,10 +28,10 @@ volumes:
     hadoop_conf:
     hadoop_hdfs:
     hadoop_logs:
-    zookeeper_data:
-    zookeeper_logs:
-    zookeeper_conf:
 
 networks:
-    hadoop:
+    default:
+      external:
+        name: parrot
+    parrot:
         driver: bridge

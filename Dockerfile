@@ -1,6 +1,6 @@
-FROM mcapitanio/centos-java:7-7u80
+FROM parrotstream/centos-openjdk
 
-ENV HADOOP_VER 2.7.2
+ENV HADOOP_VER 2.8.1
 
 MAINTAINER Matteo Capitanio <matteo.capitanio@gmail.com>
 
