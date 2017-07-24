@@ -16,17 +16,9 @@ ENV YARN_CONF_DIR $HADOOP_CONF_DIR
 ENV PATH $HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
 
 # Install needed packages
-RUN yum clean all; \
-    yum update -y
-RUN yum install -y deltarpm \
-    which \
-    openssh-clients \
-    openssh-server \
-    openssl \
-    python-setuptools
+RUN yum update -y
+RUN yum install -y openssh-clients openssh-server openssl
 RUN yum clean all
-RUN easy_install supervisor
-    
 
 WORKDIR /opt/docker
 
