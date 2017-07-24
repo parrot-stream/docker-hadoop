@@ -1,15 +1,13 @@
-FROM centos
+FROM parrotstream/centos-openjdk
 
 MAINTAINER Matteo Capitanio <matteo.capitanio@gmail.com>
 
 USER root
 
-RUN yum update -y
-RUN yum install -y wget python-setuptools java-1.8.0-openjdk-devel sudo curl vim
-RUN easy_install supervisor
 ADD cloudera-cdh5.repo /etc/yum.repos.d/
 RUN rpm --import https://archive.cloudera.com/cdh5/redhat/5/x86_64/cdh/RPM-GPG-KEY-cloudera
 RUN yum install -y hadoop-hdfs-namenode hadoop-hdfs-datanode hadoop-yarn-resourcemanager hadoop-yarn-nodemanager hadoop-mapreduce-historyserver
+RUN yum clean all
 
 RUN mkdir -p /var/run/hdfs-sockets; \
     chown hdfs.hadoop /var/run/hdfs-sockets
