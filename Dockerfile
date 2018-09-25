@@ -5,7 +5,7 @@ MAINTAINER Matteo Capitanio <matteo.capitanio@gmail.com>
 USER root
 
 ADD cloudera-cdh5.repo /etc/yum.repos.d/
-RUN rpm --import https://archive.cloudera.com/cdh5/redhat/5/x86_64/cdh/RPM-GPG-KEY-cloudera
+RUN rpm --import https://archive.cloudera.com/cdh5/redhat/6/x86_64/cdh/RPM-GPG-KEY-cloudera
 RUN yum install -y hadoop-hdfs-namenode hadoop-hdfs-datanode hadoop-yarn-resourcemanager hadoop-yarn-nodemanager hadoop-mapreduce-historyserver
 RUN yum clean all
 
@@ -20,6 +20,8 @@ ADD etc/hadoop/conf/hdfs-site.xml /etc/hadoop/conf/
 ADD etc/hadoop/conf/mapred-site.xml /etc/hadoop/conf/
 
 WORKDIR /
+
+RUN yum install -y sudo
 
 # Various helper scripts
 ADD bin/start-hdfs.sh ./
