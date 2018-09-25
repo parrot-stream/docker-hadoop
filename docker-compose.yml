@@ -2,19 +2,24 @@ version: "3"
 
 services:
 
+    zookeeper:
+        image: parrotstream/zookeeper:latest
+        ports:
+        - 2181:2181
+        - 2888:2888
+        - 3888:3888
+        - 8080:8080
+        networks:
+        - parrot
     hadoop:
         build:
             context: .
             dockerfile: Dockerfile
-        image: parrotstream/hadoop:latest
-        external_links:
+        image: parrotstream/hadoop:2.8.5
+        links:
             - zookeeper
         networks:
             - parrot
-        volumes:
-            - hadoop_conf:/opt/hadoop/etc/hadoop
-            - hadoop_logs:/opt/hadoop/logs
-            - hadoop_hdfs:/hdfs
         ports:
             - "50070:50070"
             - "50075:50075"
@@ -23,12 +28,6 @@ services:
             - "8088:8088"
             - "8188:8188"
             - "19888:19888"
-
-volumes:
-    hadoop_conf:
-    hadoop_hdfs:
-    hadoop_logs:
-
 networks:
     default:
       external:
