@@ -1,18 +1,21 @@
-FROM parrotstream/centos-openjdk
+FROM parrotstream/centos-openjdk:8
 
-ENV HADOOP_VER 2.8.1
+ENV HADOOP_VER 3.0.3
 
 MAINTAINER Matteo Capitanio <matteo.capitanio@gmail.com>
 
 USER root
 
+ENV HDFS_NAMENODE_USER "root"
+ENV HDFS_DATANODE_USER "root"
+ENV HDFS_SECONDARYNAMENODE_USER "root"
+ENV YARN_RESOURCEMANAGER_USER "root"
+ENV YARN_NODEMANAGER_USER "root"
 ENV HADOOP_HOME /opt/hadoop
-ENV HADOOP_PREFIX $HADOOP_HOME
 ENV HADOOP_COMMON_HOME $HADOOP_HOME
-ENV HADOOP_COMMON_LIB_NATIVE $HADOOP_PREFIX/lib/native
-ENV HADOOP_CONF_DIR $HADOOP_PREFIX/etc/hadoop
-ENV HADOOP_LOG_DIR=$HADOOP_HOME/logs
-ENV YARN_CONF_DIR $HADOOP_CONF_DIR
+ENV HADOOP_COMMON_LIB_NATIVE $HADOOP_HOME/lib/native
+ENV HADOOP_CONF_DIR $HADOOP_HOME/etc/hadoop
+ENV HADOOP_LOG_DIR $HADOOP_HOME/logs
 
 ENV PATH $HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH
 
@@ -36,7 +39,8 @@ ADD ssh_config /root/.ssh/config
 RUN chmod 600 /root/.ssh/config; \
     chown root:root /root/.ssh/config
 
-COPY hadoop/ $HADOOP_HOME/
+COPY hadoop $HADOOP_HOME
+#RUN cat $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 COPY ./etc /etc
 RUN chmod +x $HADOOP_HOME/etc/hadoop/*.sh
 RUN chmod +x $HADOOP_HOME/bin/*.sh
@@ -46,16 +50,15 @@ RUN rm -rf /hdfs; \
     chown -R hdfs:hdfs /hdfs; \
     chown -R hdfs:hdfs $HADOOP_HOME
 
-USER hdfs
+#USER hdfs
 RUN mkdir -p $HADOOP_HOME/logs; \
     hdfs namenode -format
-USER root
 
 # hdfs-default.xml ports
-EXPOSE 50010 50020 50070 50075 50090 50091 50100 50105 50475 50470 8020 8485 8480 8481
+EXPOSE 9871 9870 9820 9869 9868 9867 9866 9865 9864
 # mapred-default.xml ports
 EXPOSE 50030 50060 13562 10020 19888
-#Yarn ports
+# Yarn ports
 EXPOSE 8030 8031 8032 8040 8042 8046 8047 8088 8090 8188 8190 8788 10200
 #Other ports
 EXPOSE 21 22
