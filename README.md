@@ -32,8 +32,8 @@ Once started you'll be able to read the list of all the Hadoop Web GUIs urls:
 
 | **Hadoop Web UIs**        |**URL**                            |
 |:--------------------------|:----------------------------------|
-| *Hadoop Name Node*        | http://localhost:50070            |
-| *Hadoop Data Node*        | http://localhost:50075            |
+| *Hadoop Name Node*        | http://localhost:9870            |
+| *Hadoop Data Node*        | http://localhost:9864            |
 | *YARN Node Manager*       | http://localhost:8042             |
 | *YARN Resource Manager*   | http://localhost:8088             |
 | *YARN Timeline History*   | http://localhost:8188             |
@@ -45,17 +45,13 @@ While the Hadoop Docker container is running, you can always get the urls' list 
 
 included in the GitHub source repository.
 
-There are 3 named volumes defined:
-
-- **hadoop_conf** wich points to HADOOP_CONF_DIR
-- **hadoop_logs** which points to HADOOP_LOG_DIR
-- **hadoop_hdfs** which contains the HDFS files for the primary and secondary name nodes
-
 ### Available tags:
 
-- Apache Hadoop 2.8.5 ([2.8.5](https://github.com/parrot-stream/docker-hadoop/blob/2.8.5/Dockerfile), [latest](https://github.com/parrot-stream/docker-hadoop/blob/latest/Dockerfile))
+- Apache Hadoop 3.0.3 ([3.0.3](https://github.com/parrot-stream/docker-hadoop/blob/3.0.3/Dockerfile), [latest](https://github.com/parrot-stream/docker-hadoop/blob/latest/Dockerfile))
+- Apache Hadoop 2.8.5 ([2.8.5](https://github.com/parrot-stream/docker-hadoop/blob/2.8.5/Dockerfile))
 - Apache Hadoop 2.8.1 ([2.8.1](https://github.com/parrot-stream/docker-hadoop/blob/2.8.1/Dockerfile))
 - Apache Hadoop 2.8.0 ([2.8.0](https://github.com/parrot-stream/docker-hadoop/blob/2.8.0/Dockerfile))
 - Apache Hadoop 2.7.3 ([2.7.3](https://github.com/parrot-stream/docker-hadoop/blob/2.7.3/Dockerfile))
 - Apache Hadoop 2.6.4 ([2.6.4](https://github.com/parrot-stream/docker-hadoop/blob/2.6.4/Dockerfile))
+- Apache Hadoop 2.6.0-cdh5.15.1 ([2.6.0-cdh5.15.1](https://github.com/parrot-stream/docker-hadoop/blob/2.6.0-cdh5.15.1/Dockerfile))
 - Apache Hadoop 2.6.0-cdh5.11.1 ([2.6.0-cdh5.11.1](https://github.com/parrot-stream/docker-hadoop/blob/2.6.0-cdh5.11.1/Dockerfile))

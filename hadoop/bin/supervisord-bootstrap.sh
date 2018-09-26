@@ -31,7 +31,8 @@ if [ $rc -ne 0 ]; then
 fi
 
 supervisorctl start hdfs
-supervisorctl start resourcemanager
+supervisorctl start yarn
+#supervisorctl start resourcemanager
 
 wait-for-it.sh localhost:8088 -t 60
 rc=$?
@@ -42,20 +43,21 @@ if [ $rc -ne 0 ]; then
     exit $rc
 fi
 
-supervisorctl start nodemanager
+#supervisorctl start nodemanager
 supervisorctl start timelineserver
 supervisorctl start historyserver
 
 hdfs dfs -chown hdfs:supergroup /
 hdfs dfs -chmod 777 /
+hdfs dfs -mkdir -p /tmp
 hdfs dfs -chmod 777 /tmp
 
 
 echo -e "\n\n--------------------------------------------------------------------------------"
 echo -e "You can now access to the following Hadoop Web UIs:"
 echo -e ""
-echo -e "Hadoop - NameNode:                     http://localhost:50070"
-echo -e "Hadoop - DataNode:                     http://localhost:50075"
+echo -e "Hadoop - NameNode:                     http://localhost:9870"
+echo -e "Hadoop - DataNode:                     http://localhost:9875"
 echo -e "Hadoop - YARN Node Manager:            http://localhost:8042"
 echo -e "Hadoop - YARN Resource Manager:        http://localhost:8088"
 echo -e "Hadoop - YARN Application History:     http://localhost:8188"

@@ -15,19 +15,20 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-        image: parrotstream/hadoop:2.8.5
+        image: parrotstream/hadoop:3.0.3
         links:
             - zookeeper
         networks:
             - parrot
         ports:
-            - "50070:50070"
-            - "50075:50075"
-            - "8020:8020"
-            - "8042:8042"
-            - "8088:8088"
-            - "8188:8188"
-            - "19888:19888"
+            - 9870:9870
+            - 9864:9864
+            - 9820:9820
+            - 8042:8042
+            - 8088:8088
+            - 8188:8188
+            - 19888:19888
+
 networks:
     default:
       external:
