@@ -1,11 +1,13 @@
-FROM parrotstream/centos-openjdk
+FROM parrotstream/centos-openjdk:8
 
 MAINTAINER Matteo Capitanio <matteo.capitanio@gmail.com>
 
 USER root
 
-ADD cloudera-cdh5.repo /etc/yum.repos.d/
-RUN rpm --import https://archive.cloudera.com/cdh5/redhat/6/x86_64/cdh/RPM-GPG-KEY-cloudera
+ENV CDH_VERSION 6.0.0
+
+ADD cloudera-cdh6.repo /etc/yum.repos.d/
+RUN rpm --import https://archive.cloudera.com/cdh6/$CDH_VERSION/redhat7/yum/RPM-GPG-KEY-cloudera
 RUN yum install -y hadoop-hdfs-namenode hadoop-hdfs-datanode hadoop-yarn-resourcemanager hadoop-yarn-nodemanager hadoop-mapreduce-historyserver
 RUN yum clean all
 
