@@ -1,37 +1,22 @@
 version: "3"
-
 services:
-
-    hadoop:
-        build:
-            context: .
-            dockerfile: Dockerfile
-        image: parrotstream/hadoop:2.7.3
-        external_links:
-            - zookeeper
-        networks:
-            - parrot
-        volumes:
-            - hadoop_conf:/opt/hadoop/etc/hadoop
-            - hadoop_logs:/opt/hadoop/logs
-            - hadoop_hdfs:/hdfs
-        ports:
-            - "50070:50070"
-            - "50075:50075"
-            - "8020:8020"
-            - "8042:8042"
-            - "8088:8088"
-            - "8188:8188"
-            - "19888:19888"
-
-volumes:
-    hadoop_conf:
-    hadoop_hdfs:
-    hadoop_logs:
-
+  hadoop:
+    container_name: hadoop
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: parrotstream/hadoop:2.7.3
+    external_links:
+    - zookeeper
+    ports:
+    - 50070:50070
+    - 50075:50075
+    - 8020:8020
+    - 8042:8042
+    - 8088:8088
+    - 8188:8188
+    - 19888:19888
 networks:
-    default:
-        external:
-            name: parrot
-    parrot:
-        driver: bridge
+  default:
+    external:
+      name: parrot_default
