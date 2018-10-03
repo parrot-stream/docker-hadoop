@@ -1,23 +1,13 @@
 version: "3"
 services:
-  zookeeper:
-    image: parrotstream/zookeeper:latest
-    ports:
-    - 2181:2181
-    - 2888:2888
-    - 3888:3888
-    - 8080:8080
-    networks:
-    - parrot
   hadoop:
+    container_name: hadoop
     build:
       context: .
       dockerfile: Dockerfile
     image: parrotstream/hadoop:2.8.5
-    links:
+    external_links:
     - zookeeper
-    networks:
-    - parrot
     ports:
     - "50070:50070"
     - "50075:50075"
@@ -29,6 +19,4 @@ services:
 networks:
   default:
     external:
-      name: parrot
-  parrot:
-    driver: bridge
+      name: parrot_default
