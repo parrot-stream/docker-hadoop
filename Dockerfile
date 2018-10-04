@@ -1,6 +1,6 @@
 FROM parrotstream/centos-openjdk:8
 
-ENV HADOOP_VER 2.7.2
+ENV HADOOP_VER 2.7.7
 
 MAINTAINER Matteo Capitanio <matteo.capitanio@gmail.com>
 
