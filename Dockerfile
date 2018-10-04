@@ -1,4 +1,4 @@
-FROM parrotstream/centos-openjdk
+FROM parrotstream/centos-openjdk:8
 
 ENV HADOOP_VER 2.7.2
 

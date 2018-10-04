@@ -26,8 +26,6 @@ Run with Docker Compose:
 
     docker-compose -p parrot up
 
-Setting the project name to *parrot* with the **-p** option is useful to share the network created with the containers coming from other Parrot docker-compose.yml configurations.
-
 Once started you'll be able to read the list of all the Hadoop Web GUIs urls:
 
 | **Hadoop Web UIs**        |**URL**                            |
@@ -44,12 +42,6 @@ While the Hadoop Docker container is running, you can always get the urls' list 
     print-urls.sh
 
 included in the GitHub source repository.
-
-There are 3 named volumes defined:
-
-- **hadoop_conf** wich points to HADOOP_CONF_DIR
-- **hadoop_logs** which points to HADOOP_LOG_DIR
-- **hadoop_hdfs** which contains the HDFS files for the primary and secondary name nodes
 
 ### Available tags:
 
