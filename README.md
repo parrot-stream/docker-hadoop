@@ -21,11 +21,14 @@ For example, if you want Apache Hadoop release 2.6.0 on CDH 5.11.1 you can pull 
 
     docker pull parrotstream/hadoop:2.6.0-cdh5.11.1
 
+
 Run with Docker Compose:
 
     docker-compose -p parrot up
 
+
 Setting the project name to *parrot* with the **-p** option is useful to share the network created with the containers coming from other Parrot docker-compose.yml configurations.
+
 
 Once started you'll be able to read the list of all the Hadoop Web GUIs urls:
 
